@@ -1,12 +1,12 @@
 const Clarifai = require('clarifai')
 
 
-const handleApiCall = (req, res) =>{
-    const MODEL_ID = process.env.CLARIFAI-MODEL-ID;
-    const MODEL_VERSION_ID = process.env.CLARIFAI-VERSION-ID;
+export const handleApiCall = (req, res) =>{
+    const MODEL_ID = process.env["CLARIFAI-MODEL-ID"];
+    const MODEL_VERSION_ID = process.env["CLARIFAI-VERSION-ID"];
     const returnClarifaiRequestOptions = (imageUrl) => {
         // Your PAT (Personal Access Token) can be found in the Account's Security section
-        const PAT = process.env.CLARIFAI-PAT;
+        const PAT = process.env["CLARIFAI-PAT"];
         // Specify the correct user_id/app_id pairings
         // Since you're making inferences outside your app's scope
         const USER_ID = 'rakoc001';
@@ -50,7 +50,7 @@ const handleApiCall = (req, res) =>{
     .catch(err => res.status(400).json('Unable to work with API'))
 }
 
-const handleImage = (db) => (req, res) => {
+export const handleImage = (db) => (req, res) => {
     const { id } = req.body;
     db('users')
     .where('id', '=', id)
@@ -62,7 +62,7 @@ const handleImage = (db) => (req, res) => {
     .catch(err => res.status(400).json('Unable to retrieve entry count'))
 }
 
-module.exports = { 
-    handleImage,
-    handleApiCall
-}
+// exports = { 
+//     handleImage,
+//     handleApiCall
+// }

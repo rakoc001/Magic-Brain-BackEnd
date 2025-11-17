@@ -13,11 +13,11 @@ import { handleImage, handleApiCall } from './controllers/image.js';
 const db = knex({
     client: 'pg',
     connection: {
-        host: process.env.DB-HOSTNAME,
-        port: process.env.DB-PORT,
-        user: process.env.DB-USERNAME,
-        password: process.env.DB-PASSWORD,
-        database: process.env.DB-NAME,
+        host: process.env["DB-HOSTNAME"],
+        port: process.env["DB-PORT"],
+        user: process.env["DB-USERNAME"],
+        password: process.env["DB-PASSWORD"],
+        database: process.env["DB-NAME"],
     },
 });
 // create express instance
@@ -27,10 +27,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/', (req, res) => { res.send('success')})
-app.post('/signin', signin.handleSignin(db, bcrypt))
-app.post('/register', register.handleRegister(db, bcrypt))
-app.get('/profile/:id', profile.handleProfileGet(db))
-app.put('/image', handleImage(db)) 
+app.post('/signin', (req, res) => signin.handleSignin(db, bcrypt))
+app.post('/register', (req, res) => register.handleRegister(db, bcrypt))
+app.get('/profile/:id', (req, res) => profile.handleProfileGet(db))
+app.put('/image', (req, res) => handleImage(db)) 
 app.post('/imageurl', (req, res) => {handleApiCall(req, res)})
 
 // control which port express is running on
