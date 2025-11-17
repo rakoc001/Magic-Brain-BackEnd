@@ -7,7 +7,7 @@ import knex from 'knex';
 import register from './controllers/register.js';
 import signin from './controllers/signin.js';
 import profile from './controllers/profile.js';
-import { image } from './controllers/image.js';
+import { handleImage, handleApiCall } from './controllers/image.js';
 
 // connect to database
 const db = knex({
@@ -30,8 +30,8 @@ app.get('/', (req, res) => { res.send('success')})
 app.post('/signin', signin.handleSignin(db, bcrypt))
 app.post('/register', register.handleRegister(db, bcrypt))
 app.get('/profile/:id', profile.handleProfileGet(db))
-app.put('/image', image.handleImage(db)) 
-app.post('/imageurl', (req, res) => {image.handleApiCall(req, res)})
+app.put('/image', handleImage(db)) 
+app.post('/imageurl', (req, res) => {handleApiCall(req, res)})
 
 // control which port express is running on
 app.listen(3001, () => {
