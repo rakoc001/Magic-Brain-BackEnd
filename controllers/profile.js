@@ -1,4 +1,4 @@
-export const handleProfileGet = (db) => (req, res) => {
+const handleProfileGet = (db) => (req, res) => {
     const { id } = req.params;
     db.select('*')
     .from('users')
@@ -12,4 +12,4 @@ export const handleProfileGet = (db) => (req, res) => {
     })
 }
 
-// export handleProfileGet 
+module.exports = { handleProfileGet }

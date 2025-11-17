@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai')
 
 
-export const handleApiCall = (req, res) =>{
+const handleApiCall = (req, res) =>{
     const MODEL_ID = process.env["CLARIFAI-MODEL-ID"];
     const MODEL_VERSION_ID = process.env["CLARIFAI-VERSION-ID"];
     const returnClarifaiRequestOptions = (imageUrl) => {
@@ -50,7 +50,7 @@ export const handleApiCall = (req, res) =>{
     .catch(err => res.status(400).json('Unable to work with API'))
 }
 
-export const handleImage = (db) => (req, res) => {
+const handleImage = (db) => (req, res) => {
     const { id } = req.body;
     db('users')
     .where('id', '=', id)
@@ -62,7 +62,7 @@ export const handleImage = (db) => (req, res) => {
     .catch(err => res.status(400).json('Unable to retrieve entry count'))
 }
 
-// exports = { 
-//     handleImage,
-//     handleApiCall
-// }
+module.exports = { 
+    handleImage,
+    handleApiCall
+}
