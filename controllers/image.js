@@ -2,11 +2,11 @@ const Clarifai = require('clarifai')
 
 
 const handleApiCall = (req, res) =>{
-    const MODEL_ID = 'face-detection';
-    const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';
+    const MODEL_ID = process.env.CLARIFAI-MODEL-ID;
+    const MODEL_VERSION_ID = process.env.CLARIFAI-VERSION-ID;
     const returnClarifaiRequestOptions = (imageUrl) => {
         // Your PAT (Personal Access Token) can be found in the Account's Security section
-        const PAT = '4bb81651a1014c1f8fd16f8090d9fb26';
+        const PAT = process.env.CLARIFAI-PAT;
         // Specify the correct user_id/app_id pairings
         // Since you're making inferences outside your app's scope
         const USER_ID = 'rakoc001';
@@ -65,4 +65,4 @@ const handleImage = (db) => (req, res) => {
 module.exports = { 
     handleImage,
     handleApiCall
- }
+}
