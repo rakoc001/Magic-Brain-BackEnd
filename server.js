@@ -9,8 +9,6 @@ import signin from './controllers/signin.js';
 import profile from './controllers/profile.js';
 import { handleImage, handleApiCall } from './controllers/image.js';
 
-console.log("hostname environment variable: ", process.env["DB-HOSTNAME"]);
-
 // connect to database
 const db = knex({
     client: 'pg',
@@ -36,8 +34,8 @@ app.put('/image', (req, res) => handleImage(db))
 app.post('/imageurl', (req, res) => {handleApiCall(req, res)})
 
 // control which port express is running on
-app.listen(3001, () => {
-    console.log('app is running on port 3001');
+app.listen(process.env.PORT, () => {
+    console.log("process.env.port: ", process.env.PORT);
 })
 
 // --- Possible routes needed on server (API Planning)
