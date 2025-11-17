@@ -9,6 +9,7 @@ import signin from './controllers/signin.js';
 import profile from './controllers/profile.js';
 import { handleImage, handleApiCall } from './controllers/image.js';
 
+
 // connect to database
 const db = knex({
     client: 'pg',
@@ -17,7 +18,7 @@ const db = knex({
         port: process.env["DB-PORT"],
         user: process.env["DB-USERNAME"],
         password: process.env["DB-PASSWORD"],
-        database: process.env["DB-NAME"],
+        database: process.env["DB-NAME"]
     },
 });
 // create express instance
