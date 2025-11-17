@@ -9,6 +9,7 @@ import signin from './controllers/signin.js';
 import profile from './controllers/profile.js';
 import { handleImage, handleApiCall } from './controllers/image.js';
 
+console.log("hostname environment variable: ", process.env["DB-HOSTNAME"]);
 
 // connect to database
 const db = knex({
