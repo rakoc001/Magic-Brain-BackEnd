@@ -7,17 +7,17 @@ import knex from 'knex';
 import register from './controllers/register.js';
 import signin from './controllers/signin.js';
 import profile from './controllers/profile.js';
-import image from './controllers/image.js';
+import { image } from './controllers/image.js';
 
 // connect to database
 const db = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
-        port: 5432,
-        user: 'postgres',
-        password: 'password',
-        database: 'smart-brain',
+        host: DB-HOSTNAME,
+        port: DB-PORT,
+        user: DB-USERNAME,
+        password: DB-PASSWORD,
+        database: DB-NAME,
     },
 });
 // create express instance
