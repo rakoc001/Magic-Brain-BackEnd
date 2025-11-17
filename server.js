@@ -13,11 +13,11 @@ import { handleImage, handleApiCall } from './controllers/image.js';
 const db = knex({
     client: 'pg',
     connection: {
-        host: DB-HOSTNAME,
-        port: DB-PORT,
-        user: DB-USERNAME,
-        password: DB-PASSWORD,
-        database: DB-NAME,
+        host: process.env.DB-HOSTNAME,
+        port: process.env.DB-PORT,
+        user: process.env.DB-USERNAME,
+        password: process.env.DB-PASSWORD,
+        database: process.env.DB-NAME,
     },
 });
 // create express instance
