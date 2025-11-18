@@ -1,15 +1,11 @@
 
 const handleRegister = (db, bcrypt) => (req, res) => {
-    console.log("Starting handleRegister")
     const { email, name, password } = req.body;
     if (!email || !name || !password) {
         return res.status(400).json('Incorrect form submission')
     }
     const hash = bcrypt.hashSync(password);
-        console.log("Encrypting password")
-        console.log(`request email: ${email}, request name: ${name}, request password: ${password}, database: ${db}`)
         db.transaction(trx =>  {
-            console.log("Starting transaction with database")
             trx.insert({
                 hash: hash,
                 email: email
@@ -25,17 +21,15 @@ const handleRegister = (db, bcrypt) => (req, res) => {
                         joined: new Date()
                     })
                     .then(user => {
-                        console.log(user)
                         res.json(user[0])
                     })
             })
             .then(trx.commit)
             .catch(trx.rollback)
-            console.log("transaction complete")
         })
         .catch(err => {
-            console.log(`error: ${err}`);
-            res.status(400).json('User already exists')
+            console.log(err);
+            res.status(400).json('Registration Error has occurred')
         })
 }
 
