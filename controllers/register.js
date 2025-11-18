@@ -7,6 +7,7 @@ const handleRegister = (db, bcrypt) => (req, res) => {
     }
     const hash = bcrypt.hashSync(password);
         console.log("Encrypting password")
+        console.log(`request email: ${email}, request name: ${name}, request password: ${password}, database: ${db}`)
         db.transaction(trx =>  {
             console.log("Starting transaction with database")
             trx.insert({
