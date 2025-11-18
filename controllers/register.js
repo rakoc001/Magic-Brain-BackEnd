@@ -24,13 +24,15 @@ const handleRegister = (db, bcrypt) => (req, res) => {
                         joined: new Date()
                     })
                     .then(user => {
+                        console.log(user)
                         res.json(user[0])
                     })
             })
             .then(trx.commit)
             .catch(trx.rollback)
+            console.log("transaction complete")
         })
-        .catch(err => res.status(400).json('User already exists'))
+        .catch(err => res.status(400).json('User already exists: ', err))
 }
 
 module.exports = { handleRegister }
