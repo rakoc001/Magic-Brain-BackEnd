@@ -33,7 +33,10 @@ const handleRegister = (db, bcrypt) => (req, res) => {
             .catch(trx.rollback)
             console.log("transaction complete")
         })
-        .catch(err => res.status(400).json('User already exists: ', err))
+        .catch(err => {
+            console.log(`error: ${err}`);
+            res.status(400).json('User already exists')
+        })
 }
 
 module.exports = { handleRegister }
