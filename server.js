@@ -27,10 +27,10 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.get('/', (req, res) => { res.send('success')})
-app.post('/signin', (req, res) => signin.handleSignin(req, res, db, bcrypt))
-app.post('/register', (req, res) => register.handleRegister(req, res, db, bcrypt))
-app.get('/profile/:id', (req, res) => profile.handleProfileGet(req, res, db))
-app.put('/image', (req, res) => handleImage(req, res, db)) 
+app.post('/signin', (req, res) => signin.handleSignin(db, bcrypt)(req, res))
+app.post('/register', (req, res) => register.handleRegister(db, bcrypt)(req, res))
+app.get('/profile/:id', (req, res) => profile.handleProfileGet(db)(req, res))
+app.put('/image', (req, res) => handleImage(db)(req, res)) 
 app.post('/imageurl', (req, res) => {handleApiCall(req, res)})
 
 // control which port express is running on
