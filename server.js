@@ -17,7 +17,8 @@ const db = knex({
         port: process.env["DB-PORT"],
         user: process.env["DB-USERNAME"],
         password: process.env["DB-PASSWORD"],
-        database: process.env["DB-NAME"]
+        database: process.env["DB-NAME"],
+        ssl: { rejectUnauthorized: false }
     },
 });
 // create express instance
